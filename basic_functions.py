@@ -1,6 +1,6 @@
 import os
-# ./config.txt
-CONFIG_FILE = "./config.txt"
+
+CONFIG_FILE = os.path.join(os.getcwd(), "config.txt")
 
 def add_folder(dir_name):
   config_status = file_exists(CONFIG_FILE)
@@ -17,7 +17,7 @@ def add_folder(dir_name):
     initialize_config()
     if dir_status:
       fh = open(CONFIG_FILE, "a")
-      fh.write("%s%s", %(dir_name, "\n"))
+      fh.write("%s%s" %(dir_name, "\n"))
       fh.close()
       return True
     else:
@@ -55,9 +55,9 @@ def remove_folder():
 
 def config_file_empty():
   fh = open(CONFIG_FILE, "r")
-  text_lines = fh.readlines()
+  text = fh.read()
   fh.close()
-  if text_lines <= 1:
+  if len(text) == 0:
     return True
   else:
     return False
