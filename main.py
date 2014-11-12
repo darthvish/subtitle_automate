@@ -8,47 +8,55 @@ import basic_functions as bf
 import download_subtitle as ds
 
 
-def main():
-    VALID_INPUTS = [1, 2, 3, 4]
+def print_msg(msg):
+    os.system("clear")
+    print "msg: "+msg
+    cli_menu()
 
-    print "1. add folder for watch"
+
+def cli_menu():
+    print "1. add folder to watch"
     print "2. remove folder"
-    print "3. start downloading"
+    print "3. downloading subtitles"
     print "4. exit"
-    try:
-        choice = int(raw_input("input:"))
-        if choice not in VALID_INPUTS:
-            print "not valid input"
-    except:
-        print "not valid input"
+    choice = input("your choice: ")
+    if user_choice_validate(choice):
+        interpret_usr_choice(choice)
+    else:
+        print_msg("msg: choice not valid, possible values are 1, 2, 3, 4")
 
+
+def user_choice_validate(value):
+    if isinstance(value, int) and value in [1, 2, 3, 4]:
+        return True
+    else:
+        return False
+
+
+def interpret_usr_choice(choice):
     if choice == 1:
-        folder_name = raw_input("path$")
-        if bf.add_folder(folder_name):
-            os.system("clear")
-            print "status:", "dir added to list"
-            main()
-        else:
-            os.system("clear")
-            print "status:", "given path is not valid"
-            main()
+        cli_add_dir()
     elif choice == 2:
-        os.system("clear")
-        print "status:", "option not ready till now"
-        main()
+        print_msg("this option is not available till now")
     elif choice == 3:
-        print "wait...."
-        if ds.download_subtitles_main():
-            os.system("clear")
-            print "status:", "operation successfully completed"
-            main()
-        else:
-            os.sytem("clear")
-            print "status:", "operation failed"
-            print "status:", "add folders to list"
-            main()
+        cli_dl_subs()
     elif choice == 4:
         sys.exit(0)
+
+
+def cli_add_dir():
+    dir_path = raw_input("input folder path:>>> ")
+    if bf.add_folder(dir_path):
+        print_msg("folder added successfully")
+    else:
+        print_msg("given folder not exist, check your input")
+
+
+def cli_dl_subs():
+    if ds.download_subtitles_main():
+        print_msg("subs downloaded successfully")
+    else:
+        print_msg("add folders to list first")
 
 
 def subliminal_exist_check():
@@ -104,7 +112,7 @@ def start_check():
 
 if __name__ == "__main__":
     if start_check():
-        main()
+        cli_menu()
     else:
         print "restart again after resolving given problems"
         sys.exit(0)
