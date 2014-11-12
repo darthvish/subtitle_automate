@@ -27,6 +27,15 @@ def cli_menu():
 
 
 def user_choice_validate(value):
+    """
+    >>> user_choice_validate(3)
+    True
+    >>> user_choice_validate(5)
+    False
+
+    :param value:
+    :return:
+    """
     if isinstance(value, int) and value in [1, 2, 3, 4]:
         return True
     else:
