@@ -52,14 +52,29 @@ def main():
 
 
 def subliminal_exist_check():
-    status = os.system("subliminal --version")
-    if not status:
-        return True
-    else:
+    """
+    check for installation of subliminal on user's computer
+    >>> subliminal_exist_check()
+    True
+
+    :return:
+    """
+    try:
+        import subliminal
+    except ImportError:
         return False
+    else:
+        return True
 
 
 def internet_connectivity_check():
+    """
+    checks for internet connectivity on user's computer
+    >>> internet_connectivity_check()
+    True
+
+    :return:
+    """
     try:
         fh = urllib.urlopen("http://www.google.com")
     except IOError:
@@ -69,6 +84,13 @@ def internet_connectivity_check():
 
 
 def start_check():
+    """
+    when program starts it checks for internet connectivity and installation of subliminal
+    >>> start_check()  #when connected to internet and subliminal installation
+    True
+
+    :return: status whether start program or not
+    """
     if subliminal_exist_check():
         if internet_connectivity_check():
             return True
