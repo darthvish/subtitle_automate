@@ -1,3 +1,5 @@
+#this python file become obsolete due to dlsub.py which uses subliminal api to do job of this file.
+#just keeping this file as souvenir
 import basic_functions as bf
 import os
 
