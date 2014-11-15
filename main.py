@@ -4,8 +4,9 @@ __version__ = 0.1
 import sys
 import os
 import urllib
+
 import basic_functions as bf
-import download_subtitle as ds
+import dlsub
 
 
 def print_msg(msg):
@@ -62,7 +63,7 @@ def cli_add_dir():
 
 
 def cli_dl_subs():
-    if ds.download_subtitles_main():
+    if dlsub.download_subtitles_main():
         print_msg("subs downloaded successfully")
     else:
         print_msg("add folders to list first")
