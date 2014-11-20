@@ -10,7 +10,7 @@ import dlsub
 
 
 def print_msg(msg):
-    os.system("clear")
+    print_head()
     print "msg: "+msg
     cli_menu()
 
@@ -120,8 +120,14 @@ def start_check():
         return False
 
 
+def print_head():
+    msg = "Subtitle-Automate".center(40, "=")
+    os.system("clear")
+    print msg
+
 if __name__ == "__main__":
     if start_check():
+        print_head()
         cli_menu()
     else:
         print "restart again after resolving given problems"
