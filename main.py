@@ -18,7 +18,7 @@ def print_msg(msg):
 def cli_menu():
     print "1. add folder to watch"
     print "2. remove folder"
-    print "3. downloading subtitles"
+    print "3. download subtitles"
     print "4. exit"
     choice = input("your choice: ")
     if user_choice_validate(choice):
