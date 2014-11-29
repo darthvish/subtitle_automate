@@ -1,3 +1,8 @@
 *.pyc
 *.txt
 *.p
+test.py
+.idea/
+cachefile.dbm
+cachefile.dbm.dogpile.lock
+cachefile.dbm.rw.lock
